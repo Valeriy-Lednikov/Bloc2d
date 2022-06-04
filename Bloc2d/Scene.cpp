@@ -12,7 +12,7 @@ class Scene
 public:
 
 
-	void LoadMap() {//std::string path) {
+	void LoadMap(std::string path) {//std::string path) {
 		_spriteCash = new GameSprite[CountCashSprite];
 		///////////////////////////////////////////////////////////
 		Texture grassT;
@@ -67,9 +67,9 @@ public:
 			"",
 			"",
 			"        ",
-			"d      d",
-			"d rggl d",
-			"dgddddgd",
+			"d                d",
+			"d rggl     rgggl d",
+			"dgddddgggggdddddgd",
 			"",
 			"" 
 		};

@@ -2,8 +2,11 @@
 #include "Scene.cpp"
 #include "Camera.cpp"
 
+
+
 const int With = GetSystemMetrics(SM_CXSCREEN);
 const int Height = GetSystemMetrics(SM_CYSCREEN);
+
 
 using namespace sf;
 
@@ -43,7 +46,7 @@ int main()
 
 
     ////////Load
-    map1.LoadMap();
+    map1.LoadMap("/Maps/map1.mp");
     Text textFPS;
     textFPS.setFont(font);
     textFPS.setCharacterSize(24);

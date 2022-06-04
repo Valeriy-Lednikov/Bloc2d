@@ -1,18 +1,26 @@
 ﻿  Bloc2d.cpp
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(79,24): warning C4018: <: несоответствие типов со знаком и без знака
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(105,54): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(105,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,41): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
 F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,30): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(20,37): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(20,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(23,43): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(34,43): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(23,37): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(34,37): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
           with
           [
               T=float
           ]
-  Map.cpp
+  Camera.cpp
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,41): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,30): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  Scene.cpp
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(79,24): warning C4018: <: несоответствие типов со знаком и без знака
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(105,54): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(105,40): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  UI.cpp
   Создание кода...
   Bloc2d.vcxproj -> F:\__Project\__2022\Bloc2d\Debug\Bloc2d.exe

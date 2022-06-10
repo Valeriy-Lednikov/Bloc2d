@@ -3,7 +3,7 @@
 #include "Scene.cpp"
 #include "Camera.h"
 #include "UI.cpp"
-
+#include "MapEditor.cpp"
 
 
 
@@ -28,11 +28,16 @@ int main()
     Scene map1;
     UI UserInterface;
 
+    
+        MapEditor mapEditor;
+    
+
 
     RenderWindow window(VideoMode(With, Height), "space", sf::Style::None);
     window.setView(camera);
+    window.setFramerateLimit(200);
     //window.setVerticalSyncEnabled(true);
-
+   // window.setMouseCursorVisible(false);
 
     ////////Load
     map1.LoadMap("Maps/map1.mp", "Maps/include.mp");
@@ -71,6 +76,8 @@ int main()
         }
 
 
+
+        mapEditor.mapEdit(camera, window, map1);
         UserInterface.update(camera, window);
         window.display();
 

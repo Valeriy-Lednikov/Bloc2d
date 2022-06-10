@@ -1,7 +1,8 @@
+#pragma once
 #include "Header.h"
 #include "Scene.h"
 using namespace sf;
-#define BlocSize = 32
+
 
 
 
@@ -110,6 +111,17 @@ public:
 		_last->obj.x = x;
 		_last->obj.y = y;
 	}
+
+	bool cellIsFull(int x, int y) {
+
+	}
+	void deleteGamebject(int x, int y) {
+		if (cellIsFull(x, y)) {
+
+		}
+	}
+
+
 
 	int getCountGamebjects() {
 		return _countGamebject;

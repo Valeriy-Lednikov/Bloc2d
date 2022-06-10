@@ -1,10 +1,22 @@
 ﻿  Bloc2d.cpp
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(62,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(62,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(77,55): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(77,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,55): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(13,41): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(14,44): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(44,13): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(45,13): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
 F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(26,43): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
           with
           [
@@ -16,16 +28,33 @@ F:\__Project\__2022\Bloc2d\Bloc2d\Bloc2d.cpp(26,37): warning C4244: аргуме
               T=float
           ]
   Camera.cpp
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+  MapEditor.cpp
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,55): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(13,41): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(14,44): warning C4244: аргумент: преобразование "const int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(44,13): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\MapEditor.cpp(45,13): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
   Physics.cpp
   Scene.cpp
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(62,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(62,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(77,55): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(77,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,49): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(63,29): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,55): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Scene.cpp(78,41): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   UI.cpp
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(24,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,35): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+F:\__Project\__2022\Bloc2d\Bloc2d\Camera.cpp(25,24): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
   Создание кода...
   Bloc2d.vcxproj -> F:\__Project\__2022\Bloc2d\Debug\Bloc2d.exe

@@ -14,3 +14,6 @@
 
 const int With = GetSystemMetrics(SM_CXSCREEN);
 const int Height = GetSystemMetrics(SM_CYSCREEN);
+const bool MapEdit = true;
+#define BlocSize = 32
+

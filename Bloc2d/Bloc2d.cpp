@@ -35,7 +35,7 @@ int main()
 
     RenderWindow window(VideoMode(With, Height), "space", sf::Style::None);
     window.setView(camera);
-    window.setFramerateLimit(200);
+    //window.setFramerateLimit(200);
     //window.setVerticalSyncEnabled(true);
    // window.setMouseCursorVisible(false);
 

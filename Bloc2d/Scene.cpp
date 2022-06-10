@@ -53,71 +53,61 @@ public:
 	void LoadMap(std::string path, std::string include) {
 		LoadSprite(include);
 
+		std::string line;
+		std::ifstream file(path);
 
-		std::string line; 
-		std::ifstream file(path); 
-
-		while (getline(file, line)) { 
+		while (getline(file, line)) {
 			std::string temp = "";
 			std::vector<std::string> data = split(line, ",");
-			createGamebject(std::stof(data[0]), std::stof(data[1]), data[2]);
+			createGamebject(std::stof(data[0]), std::stof(data[1]), stoi(data[2]));
 		}
 		file.close();
 
-
-
-
 	}
 
-	void RenderMap(sf::RenderWindow &window) {
+	void RenderMap(sf::RenderWindow& window) {
 
-		Node* _temp = _first;
 		for (int i = 0; i < _countGamebject; i++) {
-			GameSprite* sprite = findGameSpriteCash(_temp->obj.spriteID);
-			
-			sprite->sprite.setPosition(_temp->obj.x, _temp->obj.y);
+			GameSprite* sprite = findGameSpriteCash(_gameObjects->at(i).spriteID);
+			sprite->sprite.setPosition(_gameObjects->at(i).x, _gameObjects->at(i).y);
 			sprite->sprite.setTexture(sprite->texture);
 			window.draw(sprite->sprite);
-			_temp = _temp->nextNode;
 		}
 	}
 
 	void createGamebject(int x, int y, int spriteID) {
-		if (_countGamebject == 0) {
-			_first = (Node*)malloc(sizeof(Node));
-			_last = _first;
-		}
-		else {
-			_last->nextNode = (Node*)malloc(sizeof(Node));
-			_last = _last->nextNode;
-		}
+		_gameObjects->resize(_gameObjects->size() + 1);
+		_gameObjects->at(_countGamebject).x = x;
+		_gameObjects->at(_countGamebject).y = y;
+		_gameObjects->at(_countGamebject).spriteID = spriteID;
 		_countGamebject++;
-		_last->obj.spriteID = spriteID;
-		_last->obj.x = x;
-		_last->obj.y = y;
 	}
 	void createGamebject(int x, int y, std::string spriteName)
 	{
-		if (_countGamebject == 0) {
-			_first = (Node*)malloc(sizeof(Node));
-			_last = _first;
-		}
-		else {
-			_last->nextNode = (Node*)malloc(sizeof(Node));
-			_last = _last->nextNode;
-		}
+		_gameObjects->resize(_gameObjects->size() + 1);
+		_gameObjects->at(_countGamebject).x = x;
+		_gameObjects->at(_countGamebject).y = y;
+		_gameObjects->at(_countGamebject).spriteID = findGameSpriteCash(spriteName)->spriteID;
 		_countGamebject++;
-		_last->obj.spriteID = findGameSpriteCash(spriteName)->spriteID;
-		_last->obj.x = x;
-		_last->obj.y = y;
+
 	}
 
 	bool cellIsFull(int x, int y) {
-
+		for (int i = 0; i < _countGamebject; i++) {
+			if (_gameObjects->at(i).x == x && _gameObjects->at(i).y == y) {
+				return true;
+			}
+		}
+		return false;
 	}
 	void deleteGamebject(int x, int y) {
-		if (cellIsFull(x, y)) {
-
+		if(cellIsFull(x, y)) {
+			for (int i = 0; i < _countGamebject; i++) {
+				if (_gameObjects->at(i).x == x && _gameObjects->at(i).y == y) {
+					_gameObjects->erase(_gameObjects->begin() + i);
+					_countGamebject--;
+				}
+			}
 		}
 	}
 
@@ -128,6 +118,14 @@ public:
 	}
 
 
+
+	void saveScene() {
+		std::ofstream file("Maps/map1.mp");
+		for (int i = 0; i < _gameObjects->size() -1; i++) {
+			file << _gameObjects->at(i).x << "," << _gameObjects->at(i).y << "," << _gameObjects->at(i).spriteID << "\n";
+		}
+
+	}
 
 
 	GameSprite* findGameSpriteCash(int spriteID) {
@@ -146,18 +144,13 @@ public:
 		}
 		return &_spriteCash->at(0);
 	}
-	
-
 
 
 private:
 
 	int _countGamebject = 0;
-	struct Node {
-		Gameobject obj;
-		Node* nextNode;
-	};
-	Node* _first, * _last;
+
+	std::vector<Gameobject>* _gameObjects = new std::vector<Gameobject>(1);
 	std::vector<GameSprite>* _spriteCash = new std::vector<GameSprite>(1);
 	int countSpriteCash = 0;
 };

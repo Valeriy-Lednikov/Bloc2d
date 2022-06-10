@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Header.h"
 
 
@@ -14,4 +14,6 @@ struct Gameobject {
 	int y = 0;
 
 };
+
+
 

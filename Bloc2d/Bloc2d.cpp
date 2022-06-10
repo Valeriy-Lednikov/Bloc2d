@@ -1,20 +1,15 @@
-﻿#include "Header.h"
+﻿#pragma once
+#include "Header.h"
 #include "Scene.cpp"
-#include "Camera.cpp"
+#include "Camera.h"
+#include "UI.cpp"
 
 
-
-const int With = GetSystemMetrics(SM_CXSCREEN);
-const int Height = GetSystemMetrics(SM_CYSCREEN);
 
 
 using namespace sf;
 
 
-float fps = 0;
-Clock timerFPS;
-sf::Time previousTime = timerFPS.getElapsedTime();
-sf::Time currentTime;
 
 
 sf::Clock gameTimerControl;
@@ -27,30 +22,21 @@ bool drawn = false;
 int main()
 {
     //loading
-    sf::Font font;
-    if (!font.loadFromFile("Fonts/arial.ttf"))
-    {
-        std::cout << "Error!";
-    }
 
-    Camera smoothCamera;
     View camera(sf::FloatRect(0, 0, With, Height));
-    
+    CameraS smoothCamera;
+    Scene map1;
+    UI UserInterface;
 
-    Scene map1; 
 
     RenderWindow window(VideoMode(With, Height), "space", sf::Style::None);
-    //window.setFramerateLimit(100);
     window.setView(camera);
     //window.setVerticalSyncEnabled(true);
 
 
     ////////Load
-    map1.LoadMap("/Maps/map1.mp");
-    Text textFPS;
-    textFPS.setFont(font);
-    textFPS.setCharacterSize(24);
-    textFPS.setFillColor(sf::Color::Red);
+    map1.LoadMap("Maps/map1.mp", "Maps/include.mp");
+    UserInterface.initialization();
 
 
     while (window.isOpen())
@@ -78,25 +64,14 @@ int main()
             // Physics and gameplay updates.
             smoothCamera.moveCamera(camera);
             window.setView(camera);
-
+            
 
             accumulator -= dt;
             drawn = false;
         }
 
 
-
-
-
-        currentTime = timerFPS.getElapsedTime();
-        fps = 1.0f / (currentTime.asSeconds() - previousTime.asSeconds()); // the asSeconds returns a float
-        std::string s_textFPS = "fps = " + std::to_string(floor(fps));
-        textFPS.setString(s_textFPS);
-        textFPS.setPosition(camera.getCenter().x-With/2, camera.getCenter().y-Height/2);
-        window.draw(textFPS);
-        //std::cout << "fps =" << floor(fps) << std::endl; // flooring it will make the frame rate a rounded number
-        previousTime = currentTime;
-
+        UserInterface.update(camera, window);
         window.display();
 
     }

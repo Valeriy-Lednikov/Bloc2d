@@ -150,6 +150,8 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="const.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />

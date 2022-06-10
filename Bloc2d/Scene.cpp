@@ -2,7 +2,7 @@
 #include "Scene.h"
 using namespace sf;
 #define BlocSize = 32
-#define CountCashSprite 10
+
 
 
 
@@ -11,86 +11,57 @@ class Scene
 {
 public:
 
+	std::vector<std::string> split(std::string s, std::string delimiter) {
+		size_t pos_start = 0, pos_end, delim_len = delimiter.length();
+		std::string token;
+		std::vector<std::string> res;
 
-	void LoadMap(std::string path) {//std::string path) {
-		_spriteCash = new GameSprite[CountCashSprite];
-		///////////////////////////////////////////////////////////
-		Texture grassT;
-		if (!grassT.loadFromFile("texture/grass.png")) {
-			std::cout << "Could not load texture" << std::endl;
+		while ((pos_end = s.find(delimiter, pos_start)) != std::string::npos) {
+			token = s.substr(pos_start, pos_end - pos_start);
+			pos_start = pos_end + delim_len;
+			res.push_back(token);
 		}
-		Sprite grass;
-		grass.setTexture(grassT);
-		_spriteCash[0].name = "grass";
-		_spriteCash[0].spriteID = 0;
-		_spriteCash[0].sprite = grass;
-		_spriteCash[0].texture = grassT;
-		///////////////////////////////////////////////////////////
-		Texture grassTL;
-		if (!grassTL.loadFromFile("texture/grass-L.png")) {
-			std::cout << "Could not load texture" << std::endl;
-		}
-		Sprite grassL;
-		grassL.setTexture(grassTL);
-		_spriteCash[1].name = "grass-l";
-		_spriteCash[1].spriteID = 1;
-		_spriteCash[1].sprite = grassL;
-		_spriteCash[1].texture = grassTL;
-		///////////////////////////////////////////////////////////
-		Texture grassTR;
-		if (!grassTR.loadFromFile("texture/grass-R.png")) {
-			std::cout << "Could not load texture" << std::endl;
-		}
-		Sprite grassR;
-		grassR.setTexture(grassTR);
-		_spriteCash[2].name = "grass-r";
-		_spriteCash[2].spriteID = 2;
-		_spriteCash[2].sprite = grassR;
-		_spriteCash[2].texture = grassTR;
-		///////////////////////////////////////////////////////////
-		Texture dirtT;
-		if (!dirtT.loadFromFile("texture/dirt.png")) {
-			std::cout << "Could not load texture" << std::endl;
-		}
-		Sprite dirtS;
-		dirtS.setTexture(dirtT);
-		_spriteCash[3].name = "dirt";
-		_spriteCash[3].spriteID = 3;
-		_spriteCash[3].sprite = dirtS;
-		_spriteCash[3].texture = dirtT;
-		///////////////////////////////////////////////////////////
 
-		std::string map[]{ 
-			"",
-			"",
-			"",
-			"",
-			"",
-			"        ",
-			"d                d",
-			"d rggl     rgggl d",
-			"dgddddgggggdddddgd",
-			"",
-			"" 
-		};
+		res.push_back(s.substr(pos_start));
+		return res;
+	}
 
 
-		for (int i = 0; i < _countof(map); i++) {
-			for (int ii = 0; ii < map[i].size(); ii++) {
-				if (map[i][ii] == 'g') {
-					createGamebject(ii * 32, i* 32, "grass");
-				}
-				if (map[i][ii] == 'l') {
-					createGamebject(ii * 32, i * 32, "grass-l");
-				}
-				if (map[i][ii] == 'r') {
-					createGamebject(ii * 32, i * 32, "grass-r");
-				}
-				if (map[i][ii] == 'd') {
-					createGamebject(ii * 32, i * 32, "dirt");
-				}
+	void LoadSprite(std::string include) {
+		std::string line;
+		std::ifstream file(include);
+		while (getline(file, line)) {
+			std::vector<std::string> data = split(line, ",");
+			Texture texture;
+			if (!texture.loadFromFile(data.at(0))) {
+				std::cout << "Could not load texture - " << data.at(0) << std::endl;
 			}
+			Sprite sprite;
+			sprite.setTexture(texture);
+			_spriteCash->resize(_spriteCash->size() + 1);
+			_spriteCash->at(countSpriteCash).name = data.at(1);
+			_spriteCash->at(countSpriteCash).spriteID = stoi(data.at(2));
+			_spriteCash->at(countSpriteCash).sprite = sprite;
+			_spriteCash->at(countSpriteCash).texture = texture;
+			countSpriteCash++;
 		}
+		file.close();
+	}
+
+
+	void LoadMap(std::string path, std::string include) {
+		LoadSprite(include);
+
+
+		std::string line; 
+		std::ifstream file(path); 
+
+		while (getline(file, line)) { 
+			std::string temp = "";
+			std::vector<std::string> data = split(line, ",");
+			createGamebject(std::stof(data[0]), std::stof(data[1]), data[2]);
+		}
+		file.close();
 
 
 
@@ -101,10 +72,11 @@ public:
 
 		Node* _temp = _first;
 		for (int i = 0; i < _countGamebject; i++) {
-			GameSprite sprite = findGameSpriteCash(_temp->obj.spriteID);
-			sprite.sprite.setPosition(_temp->obj.x, _temp->obj.y);
-			sprite.sprite.setTexture(sprite.texture);
-			window.draw(sprite.sprite);
+			GameSprite* sprite = findGameSpriteCash(_temp->obj.spriteID);
+			
+			sprite->sprite.setPosition(_temp->obj.x, _temp->obj.y);
+			sprite->sprite.setTexture(sprite->texture);
+			window.draw(sprite->sprite);
 			_temp = _temp->nextNode;
 		}
 	}
@@ -134,7 +106,7 @@ public:
 			_last = _last->nextNode;
 		}
 		_countGamebject++;
-		_last->obj.spriteID = findGameSpriteCash(spriteName).spriteID;
+		_last->obj.spriteID = findGameSpriteCash(spriteName)->spriteID;
 		_last->obj.x = x;
 		_last->obj.y = y;
 	}
@@ -146,25 +118,21 @@ public:
 
 
 
-	GameSprite findGameSpriteCash(int spriteID) {
-		for (int i = 0; i < CountCashSprite; i++) {
-			if (spriteID == _spriteCash[i].spriteID) {
-				return _spriteCash[i];
+	GameSprite* findGameSpriteCash(int spriteID) {
+		for (int i = 0; i < countSpriteCash; i++) {
+			if (spriteID == _spriteCash->at(i).spriteID) {
+				return &_spriteCash->at(i);
 			}
 		}
-		GameSprite temp;
-		temp.name = "NULL";
-			return temp;
+		return &_spriteCash->at(0);
 	}
-	GameSprite findGameSpriteCash(std::string name) {
-		for (int i = 0; i < CountCashSprite; i++) {
-			if (name == _spriteCash[i].name ) {
-				return _spriteCash[i];
+	GameSprite* findGameSpriteCash(std::string name) {
+		for (int i = 0; i < countSpriteCash; i++) {
+			if (name == _spriteCash->at(i).name) {
+				return &_spriteCash->at(i);
 			}
 		}
-		GameSprite temp;
-		temp.name = "NULL";
-		return temp;
+		return &_spriteCash->at(0);
 	}
 	
 
@@ -178,7 +146,8 @@ private:
 		Node* nextNode;
 	};
 	Node* _first, * _last;
-	GameSprite* _spriteCash;
+	std::vector<GameSprite>* _spriteCash = new std::vector<GameSprite>(1);
+	int countSpriteCash = 0;
 };
 
 

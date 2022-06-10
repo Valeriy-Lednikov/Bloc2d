@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "UI.cpp"
 #include "MapEditor.cpp"
-
+#include "Player.cpp"
 
 
 using namespace sf;
@@ -21,67 +21,68 @@ bool drawn = false;
 
 int main()
 {
-    //loading
+	//loading
 
-    View camera(sf::FloatRect(0, 0, With, Height));
-    CameraS smoothCamera;
-    Scene map1;
-    UI UserInterface;
-
-    
-        MapEditor mapEditor;
-    
+	View camera(sf::FloatRect(0, 0, With, Height));
+	CameraS smoothCamera;
+	Scene map1;
+	UI UserInterface;
 
 
-    RenderWindow window(VideoMode(With, Height), "space", sf::Style::None);
-    window.setView(camera);
-    //window.setFramerateLimit(200);
-    //window.setVerticalSyncEnabled(true);
+	MapEditor mapEditor;
+	Player player;
+	player.start();
+
+	RenderWindow window(VideoMode(With, Height), "space", sf::Style::None);
+	window.setView(camera);
+	//window.setFramerateLimit(200);
+	//window.setVerticalSyncEnabled(true);
    // window.setMouseCursorVisible(false);
 
-    ////////Load
-    map1.LoadMap("Maps/map1.mp", "Maps/include.mp");
-    UserInterface.initialization();
+	////////Load
+	map1.LoadMap("Maps/map1.mp", "Maps/include.mp");
+	UserInterface.initialization();
 
 
-    while (window.isOpen())
-    {
-        accumulator += gameTimerControl.getElapsedTime();
-        gameTimerControl.restart();
+	while (window.isOpen())
+	{
+		accumulator += gameTimerControl.getElapsedTime();
+		gameTimerControl.restart();
 
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
-
-
-
-        window.clear();
-        map1.RenderMap(window);
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { window.close(); }
 
 
 
-        while (accumulator >= dt)
-        {
-            // Physics and gameplay updates.
-            smoothCamera.moveCamera(camera);
-            window.setView(camera);
-            
-
-            accumulator -= dt;
-            drawn = false;
-        }
+		window.clear();
+		map1.RenderMap(window);
 
 
 
-        mapEditor.mapEdit(camera, window, map1);
-        UserInterface.update(camera, window);
-        window.display();
+		while (accumulator >= dt)
+		{
+			// Physics and gameplay updates.
+			smoothCamera.moveCamera(camera);
+			window.setView(camera);
 
-    }
 
-    return 0;
+			accumulator -= dt;
+			drawn = false;
+			player.physicsUpdate(map1);
+		}
+
+
+		player.draw(window);
+		mapEditor.mapEdit(camera, window, map1);
+		UserInterface.update(camera, window);
+		window.display();
+
+	}
+
+	return 0;
 }

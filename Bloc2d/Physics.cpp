@@ -1,9 +1,42 @@
+#pragma once
 #include "Header.h"
 
-bool IsCollision(sf::Sprite a, sf::Sprite b) {
-	return (a.getPosition().y < b.getPosition().y + b.getScale().y 
-		|| a.getPosition().y + a.getScale().y > b.getPosition().y 
-		|| a.getPosition().x + a.getScale().x < b.getPosition().x 
-		|| a.getPosition().x > b.getPosition().x + b.getScale().x);
-	//return ( a.y < b.y1 || a.y1 > b.y || a.x1 < b.x || a.x > b.x1 );
+
+class Physics
+{
+public:
+
+
+private:
+
+};
+
+
+
+
+class BoxCollider
+{
+public:
+
+	BoxCollider(sf::Vector2f size, sf::Vector2f position);
+
+	bool IsCollision(sf::Sprite b) {
+
+		return (_position.y < b.getPosition().y + b.getScale().y
+			|| _position.y + _size.y > b.getPosition().y
+			|| _position.x + _size.x < b.getPosition().x
+			|| _position.x > b.getPosition().x + b.getScale().x);
+	}
+
+private:
+	sf::Vector2f _size;
+	sf::Vector2f _position;
+	
+};
+
+
+BoxCollider::BoxCollider(sf::Vector2f size, sf::Vector2f position) {
+	_size = size;
+	_position = position;
 }
+

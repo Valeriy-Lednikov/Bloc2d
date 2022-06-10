@@ -4,13 +4,12 @@
 using namespace sf;
 
 
-
-
-
-
 class Scene
 {
 public:
+
+	std::vector<Gameobject>* _gameObjects = new std::vector<Gameobject>(1);
+
 
 	std::vector<std::string> split(std::string s, std::string delimiter) {
 		size_t pos_start = 0, pos_end, delim_len = delimiter.length();
@@ -71,6 +70,7 @@ public:
 			GameSprite* sprite = findGameSpriteCash(_gameObjects->at(i).spriteID);
 			sprite->sprite.setPosition(_gameObjects->at(i).x, _gameObjects->at(i).y);
 			sprite->sprite.setTexture(sprite->texture);
+			sprite->sprite.setRotation((_gameObjects->at(i).rotation));
 			window.draw(sprite->sprite);
 		}
 	}
@@ -150,7 +150,6 @@ private:
 
 	int _countGamebject = 0;
 
-	std::vector<Gameobject>* _gameObjects = new std::vector<Gameobject>(1);
 	std::vector<GameSprite>* _spriteCash = new std::vector<GameSprite>(1);
 	int countSpriteCash = 0;
 };
